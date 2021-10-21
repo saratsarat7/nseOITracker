@@ -22,20 +22,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas requests pymongo python-decouple dnspython
       - name: Vars
+        shell: bash
         env:
-          MONGO_USER: ${{ secrets.MONGO_USER }}
-          MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+          SUPER_SECRET: ${{ secrets.MONGO_USER }}
         run: |
-          import os
-          print(os.environ['MONGO_USER'])
-          print(os.environ['MONGO_PASSWORD'])
-        shell: python
+          echo $SUPER_SECRET
       - name: Run script
         env:
           MONGO_USER: ${{ secrets.MONGO_USER }}
           MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
         run: |
-          echo python get_data.py
+          python get_data.py
       - name: Commit if any new files
         run: |
           git config --local user.email "action@github.com"
