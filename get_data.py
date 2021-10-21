@@ -27,6 +27,7 @@ def loadToMongo(load_file):
     
     print(config('MONGO_USER'))
     print(config('MONGO_PASSWORD'))
+    exit()
     
     client = MongoClient(uri)
     
