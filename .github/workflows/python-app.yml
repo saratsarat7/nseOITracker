@@ -2,7 +2,7 @@ name: Run OI Updates from NSE
 
 on:
   schedule:
-    - cron: "15 2 * * *"
+    - cron: "30 2 * * *"
 
 jobs:
   build:
