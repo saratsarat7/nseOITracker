@@ -23,6 +23,10 @@ def loadToMongo(load_file):
     df['Percent'] = (df[" Open Interest"] / df[" MWPL"])*100
     
     uri = "mongodb+srv://"+config('MONGO_USER')+":"+config('MONGO_PASSWORD')+"@iovalues.lgijy.mongodb.net/iovalues?retryWrites=true&w=majority"
+    
+    print(config('MONGO_USER'))
+    print(config('MONGO_PASSWORD'))
+    
     client = MongoClient(uri)
     
     db = client['oiDB']
