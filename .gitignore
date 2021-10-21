@@ -1,3 +1,4 @@
 X509-cert-3528890396476155861.pem
 __pycache__
 chromedriver
+.env

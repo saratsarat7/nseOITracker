@@ -4,6 +4,8 @@ import requests
 import zipfile
 from pymongo import MongoClient, DESCENDING
 
+from decouple import config
+
 def unzipFile(filePath):
     with zipfile.ZipFile(filePath, 'r') as zip_ref:
         zip_ref.extractall("./extracted/")
@@ -19,10 +21,10 @@ def loadToMongo(load_file):
     data = pd.read_csv("./extracted/"+load_file)
     df = pd.DataFrame(data, columns=['Date', ' NSE Symbol', ' MWPL', ' Open Interest', ' Limit for Next Day'])
     df['Percent'] = (df[" Open Interest"] / df[" MWPL"])*100
-
-    uri = "mongodb+srv://iovalues.lgijy.mongodb.net/myFirstDatabase?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority"
-    client = MongoClient(uri, tls=True, tlsCertificateKeyFile='X509-cert-3528890396476155861.pem')
-
+    
+    uri = "mongodb+srv://"+config('MONGO_USER')+":"+config('MONGO_PASSWORD')+"@iovalues.lgijy.mongodb.net/iovalues?retryWrites=true&w=majority"
+    client = MongoClient(uri)
+    
     db = client['oiDB']
     collection = db['oiData']
 
