@@ -2,6 +2,7 @@ import pandas as pd
 import os
 import requests
 import zipfile
+from pymongo import MongoClient, DESCENDING
 
 def unzipFile(filePath):
     with zipfile.ZipFile(filePath, 'r') as zip_ref:
@@ -19,7 +20,6 @@ def loadToMongo(load_file):
     df = pd.DataFrame(data, columns=['Date', ' NSE Symbol', ' MWPL', ' Open Interest', ' Limit for Next Day'])
     df['Percent'] = (df[" Open Interest"] / df[" MWPL"])*100
 
-    from pymongo import MongoClient, DESCENDING
     uri = "mongodb+srv://iovalues.lgijy.mongodb.net/myFirstDatabase?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority"
     client = MongoClient(uri, tls=True, tlsCertificateKeyFile='X509-cert-3528890396476155861.pem')
 
