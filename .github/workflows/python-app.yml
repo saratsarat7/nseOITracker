@@ -1,7 +1,9 @@
 name: Run OI Updates from NSE
 
 on:
-  [workflow_dispatch]
+  push:
+    branches:
+      - main
   # schedule:
   #   - cron: "30 3 * * *"
 
@@ -18,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pandas requests pymongo decouple
+          pip install pandas requests pymongo python-decouple
       - name: Run script
         env:
           MONGO_USER: ${{ secrets.MONGO_USER }}
