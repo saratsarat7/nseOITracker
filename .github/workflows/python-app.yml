@@ -1,8 +1,9 @@
-name: Run OI Updates from NSE.
+name: Run OI Updates from NSE
 
 on:
-  schedule:
-    - cron: "30 3 * * *"
+  [workflow_dispatch]
+  # schedule:
+  #   - cron: "30 3 * * *"
 
 jobs:
   build:
