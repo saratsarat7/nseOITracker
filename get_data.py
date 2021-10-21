@@ -23,13 +23,7 @@ def loadToMongo(load_file):
     df['Percent'] = (df[" Open Interest"] / df[" MWPL"])*100
     
     uri = "mongodb+srv://"+config('MONGO_USER')+":"+config('MONGO_PASSWORD')+"@iovalues.lgijy.mongodb.net/iovalues?retryWrites=true&w=majority"
-    uri = "mongodb+srv://"+os.environ.get('MONGO_USER')+":"+os.environ.get('MONGO_PASSWORD')+"@iovalues.lgijy.mongodb.net/iovalues?retryWrites=true&w=majority"
-    
-    f = open("temp.txt", "w")
-    f.write(uri)
-    f.close()
-    exit()
-    
+
     client = MongoClient(uri)
     
     db = client['oiDB']

@@ -27,9 +27,6 @@ jobs:
           MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
         run: |
           python get_data.py
-      - name: Check outputs
-        shell: bash
-        run: echo ${{ steps.vars.outputs }}
       - name: Commit if any new files
         run: |
           git config --local user.email "action@github.com"
@@ -40,4 +37,4 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          branch: main
