@@ -31,9 +31,8 @@ jobs:
           git config --local user.name "GitHub Action"
           git add -A
           git commit -m "Updated files for ${{ steps.date.outputs.date }}" -a
-      - name: push changes
-        uses: |
-          ad-m/github-push-action@master
-        with: |
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          branch: ${{ github.ref }}
